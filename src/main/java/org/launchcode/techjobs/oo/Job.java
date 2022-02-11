@@ -35,25 +35,23 @@ public class Job {
     //  match.
 
     @Override
-    public boolean equals (Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Job job = (Job) object;
-        return id == job.id;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Job)) return false;
+        Job job = (Job) o;
+        return getId() == job.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
+
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
     public String getName() {
-        if (name == null || name.isEmpty()) {
-            return "Data not available";
-        }
         return name;
     }
 
@@ -99,6 +97,28 @@ public class Job {
 
     @Override
     public String toString() {
+        String output = "";
+
+        if (name.equals("")) {
+            name = "Data not available";
+        }
+
+        if (employer.getValue().equals("") || employer.getValue() == null) {
+             employer.setValue("Data not available");
+        }
+
+        if (location.getValue().equals("") || location.getValue() == null) {
+            location.setValue("Data not available");
+        }
+
+        if (positionType.getValue().equals("") || positionType.getValue() == null) {
+            positionType.setValue("Data not available");
+        }
+
+        if (coreCompetency.getValue().equals("") || coreCompetency.getValue() == null) {
+            coreCompetency.setValue("Data not available");
+        }
+
         return "\n" +
                 "ID: " + id +
                 "\nName: " + name +
